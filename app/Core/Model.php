@@ -24,11 +24,6 @@ class Model
     protected $filter;
     const COUNT = 3;
 
-
-    // SELECT * FROM `users` RIGHT JOIN tasks ON users.id = tasks.userId ORDER BY tasks.text DESC
-    // INSERT INTO `tasks` (`id`, `userId`, `status`, `text`) VALUES (NULL, '1', '1', 'Тестовая задача 123213');
-    // UPDATE `tasks` SET `text` = '123213' WHERE `tasks`.`id` = 11;
-
     public function __construct()
     {
         $this->setDB();
@@ -189,9 +184,6 @@ class Model
 
         } catch(\PDOException $e){
             $db->rollback();
-//            echo '<pre>';
-//            var_dump($e->getMessage());
-//            die;
             echo ApiHelper::sendError(['error' => 'Во время редактирования записи возникла ошибка.']);
             die;
         }
