@@ -248,14 +248,16 @@ jQuery('.js-taskCreateForm').on('submit', (e) => {
 
 /* Update task */
 
-jQuery('.js-itemsContainer').on('submit',(e) => {
-    e.preventDefault();
-    form = jQuery(e.target)
+jQuery('.js-itemsContainer textarea').on('change',(e) => {
+
+    var id = jQuery(e.target).parents('.js-taskEdit').find('input[name="id"]').val();
 
     jQuery.ajax({
         type: 'post',
-        url: form.attr('action'),
-        data : form.serialize(),
+        url: '/tasks/updateText/'+ id +'/',
+        data : {
+            'text': jQuery(e.target).val()
+        },
         success: function(data){
             if(!data.success){
                 var text = data.errors;
@@ -267,6 +269,52 @@ jQuery('.js-itemsContainer').on('submit',(e) => {
         },
     })
 })
+
+jQuery('.js-itemsContainer input[type="checkbox"]').on('change',(e) => {
+
+    var id = jQuery(e.target).parents('.js-taskEdit').find('input[name="id"]').val();
+    var status = '';
+    if(jQuery(e.target).prop( "checked" )){
+        status = 'on';
+    }
+
+    jQuery.ajax({
+        type: 'post',
+        url: '/tasks/updateStatus/'+ id +'/',
+        data : {
+            'status': status
+        },
+        success: function(data){
+            if(!data.success){
+                var text = data.errors;
+                alert(text)
+            } else {
+                form.find('.response').html('<p class="success">Задача успешно обновлена!</p>');
+            }
+            window.location.href = '/';
+        },
+    })
+})
+
+// jQuery('.js-itemsContainer').on('submit',(e) => {
+//     e.preventDefault();
+//     form = jQuery(e.target)
+//
+//     jQuery.ajax({
+//         type: 'post',
+//         url: form.attr('action'),
+//         data : form.serialize(),
+//         success: function(data){
+//             if(!data.success){
+//                 var text = data.errors;
+//                 alert(text)
+//             } else {
+//                 form.find('.response').html('<p class="success">Задача успешно обновлена!</p>');
+//             }
+//             window.location.href = '/';
+//         },
+//     })
+// })
 
 /* Login */
 

@@ -90,12 +90,36 @@ class TaskController extends Controller
 
     }
 
-    public function update($taskId)
+    public function updateText($taskId)
     {
-
         try{
             $request = ValidationUtil::validate($_POST,[
                 'text' => 'nullable',
+            ]);
+        }catch( \Exception $exception){
+            if ($exception instanceof ValidationException) {
+                return ApiHelper::sendError($exception->getErrors());
+            }
+        }
+
+        if(empty(AuthHelper::isAuth())){
+            return ApiHelper::sendError('Вы не авторизованы');
+        }
+
+        $dataTask = [
+            'text' => $request['text'] ?: '',
+            'edited' => 1
+        ];
+
+        Task::update($taskId, $dataTask);
+
+        return ApiHelper::sendSuccess('Задача успешно обновлена');
+    }
+
+    public function updateStatus($taskId)
+    {
+        try{
+            $request = ValidationUtil::validate($_POST,[
                 'status' => 'nullable'
             ]);
         }catch( \Exception $exception){
@@ -110,14 +134,12 @@ class TaskController extends Controller
 
         $dataTask = [
             'status' => !empty($request['status']) ? 1 : 0,
-            'text' => $request['text'] ?: '',
-            'edited' => 1
         ];
 
         Task::update($taskId, $dataTask);
 
         return ApiHelper::sendSuccess('Задача успешно обновлена');
-
     }
+
 
 }

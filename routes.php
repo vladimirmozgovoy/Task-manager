@@ -13,5 +13,7 @@ Router::route('/auth/login', [new AuthController(), 'login']);
 Router::route('/auth/logout', [new AuthController(), 'logout']);
 Router::route('/tasks/create', [new TaskController(), 'create']);
 Router::route('/tasks/update/(\d+)/', [new TaskController(), 'update']);
+Router::route('/tasks/updateText/(\d+)/', [new TaskController(), 'updateText']);
+Router::route('/tasks/updateStatus/(\d+)/', [new TaskController(), 'updateStatus']);
 
 echo Router::execute($_SERVER['REQUEST_URI']);
