@@ -80,7 +80,7 @@ class TaskController extends Controller
 
         $dataTask = [
             'userId' => $userId,
-            'text' => $request['text'],
+            'text' => htmlspecialchars($request['text']),
             'status' => 0
         ];
 
