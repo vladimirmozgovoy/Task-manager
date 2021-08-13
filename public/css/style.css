@@ -1,0 +1,81 @@
+.header{
+    background: #f2f2f2;
+    padding: 10px 0;
+}
+
+.text_right{
+    text-align: right;
+}
+
+.content{
+    padding: 20px 0;
+}
+
+.task{
+    margin: 10px 0;
+    box-shadow: 0px 0px 10px #f2f2f2;
+    padding: 10px;
+}
+
+.task__text {
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.task__status{
+    text-align: right;
+}
+
+.text_center{
+    text-align: center;
+}
+
+.paging{
+    margin: 20px 0;
+}
+
+.paging__item{
+    margin: 0 5px;
+    background: #fff;
+    border: 0px;
+    box-shadow: 0px 0px 10px #d8d6d6;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.paging__item.active{
+    background: #000;
+    color: #fff;
+}
+
+.form-control{
+    margin: 10px 0;
+}
+
+.response-errors{
+    color: #ff0000;
+    font-size: 12px;
+}
+
+.response-errors p {
+    margin: 0;
+}
+
+.response-success {
+    color: #06c106;
+    font-size: 16px;
+}
+
+.task__edit{
+    font-size: 12px;
+}
+
+.success{
+    color: #06c106;
+    margin-top: 10px;
+}
+
+.error{
+    color: #ff0000;
+}
