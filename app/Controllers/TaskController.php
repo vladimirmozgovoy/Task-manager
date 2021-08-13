@@ -77,6 +77,7 @@ class TaskController extends Controller
             ];
             $userId = User::create($userData);
         }
+
         $dataTask = [
             'userId' => $userId,
             'text' => $request['text'],

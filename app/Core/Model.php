@@ -141,10 +141,10 @@ class Model
 
             $sth = $db->prepare($sql);
             $sth->execute();
-
+            $id = $db->lastInsertId();
             $db->commit();
 
-            return $db->lastInsertId();
+            return $id;
 
         } catch(\PDOException $e){
             $db->rollback();
